@@ -1,14 +1,14 @@
-From 6c59c6c6e84759d41d2ac5ba80b8636e2ed25846 Mon Sep 17 00:00:00 2001
+From 7e57de576347ca9304f44113d5b506a6e98408ac Mon Sep 17 00:00:00 2001
 From: sdhz151 <yanghui140@gmail.com>
-Date: Thu, 4 Jul 2024 05:46:47 +0800
+Date: Thu, 4 Jul 2024 06:02:17 +0800
 Subject: [PATCH] Update Makefile
 
 ---
- package/passwall/p/luci-app-passwall/Makefile | 52 +-------------------------------------
- 1 file changed, 1 insertion(+), 51 deletions(-)
+ package/passwall/p/luci-app-passwall/Makefile | 56 ++------------------------------------
+ 1 file changed, 3 insertions(+), 53 deletions(-)
 
 diff --git a/package/passwall/p/luci-app-passwall/Makefile b/package/passwall/p/luci-app-passwall/Makefile
-index 7543450761..2d8fd34ec7 100644
+index 7543450761..b9b967940c 100644
 --- a/package/passwall/p/luci-app-passwall/Makefile
 +++ b/package/passwall/p/luci-app-passwall/Makefile
 @@ -10,17 +10,11 @@ PKG_VERSION:=4.77-6
@@ -65,16 +65,18 @@ index 7543450761..2d8fd34ec7 100644
  config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
  	bool "Include Haproxy"
  	select PACKAGE_haproxy
-@@ -79,17 +51,6 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
+@@ -77,19 +49,8 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
+ 	bool "Include NaiveProxy"
+ 	depends on !(arc||(arm&&TARGET_gemini)||armeb||mips||mips64||powerpc)
  	select PACKAGE_naiveproxy
- 	default n
- 
+-	default n
+-
 -config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client
 -	bool "Include Shadowsocks Libev Client"
 -	select PACKAGE_shadowsocks-libev-ss-local
 -	select PACKAGE_shadowsocks-libev-ss-redir
--	default y
--
+ 	default y
+ 
 -config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server
 -	bool "Include Shadowsocks Libev Server"
 -	select PACKAGE_shadowsocks-libev-ss-server
@@ -101,3 +103,21 @@ index 7543450761..2d8fd34ec7 100644
  config PACKAGE_$(PKG_NAME)_INCLUDE_Simple_Obfs
  	bool "Include Simple-Obfs (Shadowsocks Plugin)"
  	select PACKAGE_simple-obfs
+@@ -126,7 +76,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_SingBox
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
+ 	bool "Include Trojan-Plus"
+ 	select PACKAGE_trojan-plus
+-	default y
++	default n
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_tuic_client
+ 	bool "Include tuic-client"
+@@ -138,7 +88,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata
+ 	bool "Include V2ray_Geodata"
+ 	select PACKAGE_v2ray-geoip
+ 	select PACKAGE_v2ray-geosite
+-	default n
++	default y
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
+ 	bool "Include V2ray-Plugin (Shadowsocks Plugin)"
