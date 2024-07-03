@@ -1,17 +1,17 @@
-From 5bde27980b5d35289abe968de3a0d91e44a2bebb Mon Sep 17 00:00:00 2001
+From 1d9b55b87974aec76620ac6e5b87e8f47b61d66d Mon Sep 17 00:00:00 2001
 From: sdhz151 <yanghui140@gmail.com>
-Date: Tue, 25 Jun 2024 06:39:20 +0800
+Date: Thu, 4 Jul 2024 05:50:15 +0800
 Subject: [PATCH] Update Makefile
 
 ---
- feeds/luci/applications/luci-app-passwall2/Makefile | 33 +++------------------------------
- 1 file changed, 3 insertions(+), 30 deletions(-)
+ feeds/luci/applications/luci-app-passwall2/Makefile | 55 +------------------------------------
+ 1 file changed, 1 insertion(+), 54 deletions(-)
 
 diff --git a/feeds/luci/applications/luci-app-passwall2/Makefile b/feeds/luci/applications/luci-app-passwall2/Makefile
-index 92c5ab93..f7159dce 100644
+index 92c5ab93..e8abe6b3 100644
 --- a/feeds/luci/applications/luci-app-passwall2/Makefile
 +++ b/feeds/luci/applications/luci-app-passwall2/Makefile
-@@ -9,8 +9,6 @@ PKG_VERSION:=1.29-1
+@@ -9,18 +9,12 @@ PKG_VERSION:=1.29-1
  PKG_RELEASE:=
  
  PKG_CONFIG_DEPENDS:= \
@@ -20,7 +20,17 @@ index 92c5ab93..f7159dce 100644
  	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy \
  	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria \
  	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat \
-@@ -31,7 +29,7 @@ LUCI_PKGARCH:=all
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy \
+-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client \
+-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Client \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Server \
+-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Client \
+-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Server \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Simple_Obfs \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_SingBox \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_tuic_client \
+@@ -31,7 +25,7 @@ LUCI_PKGARCH:=all
  LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
  	+ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc +resolveip +tcping \
  	+xray-core +v2ray-geoip +v2ray-geosite \
@@ -29,12 +39,7 @@ index 92c5ab93..f7159dce 100644
  	+PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat:ip6tables-mod-nat
  
  define Package/$(PKG_NAME)/config
-@@ -40,35 +38,10 @@ menu "Configuration"
- config PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat
- 	depends on PACKAGE_ip6tables
- 	bool "Include IPv6 Nat"
--	default n
-+	default y
+@@ -44,31 +38,6 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat
  
  if PACKAGE_$(PKG_NAME)
  
@@ -66,12 +71,39 @@ index 92c5ab93..f7159dce 100644
  config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
  	bool "Include Haproxy"
  	select PACKAGE_haproxy
-@@ -83,7 +56,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
- 	bool "Include NaiveProxy"
- 	depends on !(arc||(arm&&TARGET_gemini)||armeb||mips||mips64||powerpc)
+@@ -85,17 +54,6 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
  	select PACKAGE_naiveproxy
--	default n
-+	default y
+ 	default n
  
- config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client
- 	bool "Include Shadowsocks Libev Client"
+-config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client
+-	bool "Include Shadowsocks Libev Client"
+-	select PACKAGE_shadowsocks-libev-ss-local
+-	select PACKAGE_shadowsocks-libev-ss-redir
+-	default y
+-
+-config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server
+-	bool "Include Shadowsocks Libev Server"
+-	select PACKAGE_shadowsocks-libev-ss-server
+-	default n
+-
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Client
+ 	bool "Include Shadowsocks Rust Client"
+ 	depends on aarch64||arm||i386||mips||mipsel||x86_64
+@@ -108,17 +66,6 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Server
+ 	select PACKAGE_shadowsocks-rust-ssserver
+ 	default n
+ 
+-config PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Client
+-	bool "Include ShadowsocksR Libev Client"
+-	select PACKAGE_shadowsocksr-libev-ssr-local
+-	select PACKAGE_shadowsocksr-libev-ssr-redir
+-	default y
+-
+-config PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Server
+-	bool "Include ShadowsocksR Libev Server"
+-	select PACKAGE_shadowsocksr-libev-ssr-server
+-	default n
+-
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Simple_Obfs
+ 	bool "Include Simple-Obfs (Shadowsocks Plugin)"
+ 	select PACKAGE_simple-obfs
