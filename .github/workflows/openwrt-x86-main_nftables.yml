@@ -169,7 +169,7 @@ jobs:
        cd openwrt 
        git apply $GITHUB_WORKSPACE/patches/nftables_passwall.patch
        git apply $GITHUB_WORKSPACE/patches/nftables_passwall2.patch
-       sed -i 's/+libpcre/+libpcre2/g' package/feeds/telephony/freeswitch/Makefile
+       sed -i 's/+libpcre/+libpcre2/g' feeds/telephony/net/freeswitch/Makefile
 
  #   - name: update golang
    #   run: |
