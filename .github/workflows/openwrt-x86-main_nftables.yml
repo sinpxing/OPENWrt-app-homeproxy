@@ -169,7 +169,6 @@ jobs:
        cd openwrt 
        git apply $GITHUB_WORKSPACE/patches/nftables_passwall.patch
        git apply $GITHUB_WORKSPACE/patches/nftables_passwall2.patch
-       sed -i 's/+libpcre/+libpcre2/g' feeds/telephony/net/freeswitch/Makefile
 
  #   - name: update golang
    #   run: |
@@ -199,7 +198,8 @@ jobs:
         sudo rm -rf feeds/packages/net/v2ray-geodata
         sudo rm -rf package/feeds/packages/xray-core
         sudo rm -rf feeds/packages/net/xray-core
-  
+        sed -i 's/+libpcre/+libpcre2/g' feeds/telephony/net/freeswitch/Makefile
+
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
