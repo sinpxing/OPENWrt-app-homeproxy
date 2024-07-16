@@ -31,7 +31,7 @@ else if [[ $REPO_URL = *"x-wrt"* ]]; then
    echo "============================="
 
 else if [[ $CONFIG_FILE = *"Redrice-AC2100"* ]]; then
-   sed -i 's/192.168.15.1/192.168.2.2/g' package/base-files/files/bin/config_generate
+   sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
    sed -i "s/timezone='UTC'/timezone='CST-8'/" package/base-files/files/bin/config_generate
    sed -i "/timezone='CST-8'/a \ \ \ \ \ \ \ \ set system.@system[-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
    sed -i "s/add_list system.ntp.server='0.openwrt.pool.ntp.org'/add_list system.ntp.server='ntp.aliyun.com'/" package/base-files/files/bin/config_generate
