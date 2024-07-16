@@ -30,8 +30,8 @@ else if [[ $REPO_URL = *"x-wrt"* ]]; then
    echo "diy-part2扩展自定义第二项设置完成"
    echo "============================="
 
-else
-   sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+else if [[ $CONFIG_FILE = *"Redrice-AC2100"* ]]; then
+   sed -i 's/192.168.15.1/192.168.2.2/g' package/base-files/files/bin/config_generate
    sed -i "s/timezone='UTC'/timezone='CST-8'/" package/base-files/files/bin/config_generate
    sed -i "/timezone='CST-8'/a \ \ \ \ \ \ \ \ set system.@system[-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
    sed -i "s/add_list system.ntp.server='0.openwrt.pool.ntp.org'/add_list system.ntp.server='ntp.aliyun.com'/" package/base-files/files/bin/config_generate
@@ -41,5 +41,18 @@ else
    echo "============================="
    echo "diy-part2扩展自定义第三项设置完成"
    echo "============================="
+
+else
+   sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+   sed -i "s/timezone='UTC'/timezone='CST-8'/" package/base-files/files/bin/config_generate
+   sed -i "/timezone='CST-8'/a \ \ \ \ \ \ \ \ set system.@system[-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
+   sed -i "s/add_list system.ntp.server='0.openwrt.pool.ntp.org'/add_list system.ntp.server='ntp.aliyun.com'/" package/base-files/files/bin/config_generate
+   sed -i "s/add_list system.ntp.server='1.openwrt.pool.ntp.org'/add_list system.ntp.server='time1.cloud.tencent.com'/" package/base-files/files/bin/config_generate
+   sed -i "s/add_list system.ntp.server='2.openwrt.pool.ntp.org'/add_list system.ntp.server='time.ustc.edu.cn'/" package/base-files/files/bin/config_generate
+   sed -i "s/add_list system.ntp.server='3.openwrt.pool.ntp.org'/add_list system.ntp.server='cn.pool.ntp.org'/" package/base-files/files/bin/config_generate
+   echo "============================="
+   echo "diy-part2扩展自定义第四项设置完成"
+   echo "============================="
+      fi
    fi
 fi
