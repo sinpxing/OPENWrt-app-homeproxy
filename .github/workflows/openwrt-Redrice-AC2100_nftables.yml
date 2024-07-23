@@ -75,8 +75,26 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
+    - name: Add package
+      id: delete
+      run: |
+        cd openwrt
+        git clone -b main https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall
+
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: Add passwall2
+      id: passwall2
+      run: |
+       cd openwrt
+       mkdir -p feeds/luci/applications/passwall2
+       cd feeds/luci/applications/passwall2
+       git init
+       git remote add origin https://github.com/xiaorouji/openwrt-passwall2.git
+       git config core.sparsecheckout true
+       echo "luci-app-passwall2" >> .git/info/sparse-checkout
+       git pull --depth 1 origin main
 
     - name: Add app vlmcsd
       id: appvlmcsd
@@ -114,7 +132,10 @@ jobs:
        mv package/vlmcsd/net/vlmcsd/* package/vlmcsd
        rm -rf package/vlmcsd/net
        rm -rf package/vlmcsd/.git
-  
+       rsync -a feeds/luci/applications/passwall2/luci-app-passwall2/* feeds/luci/applications/luci-app-passwall2
+       rm -rf feeds/luci/applications/passwall2
+       ln -sf ../../../feeds/luci/applications/luci-app-passwall2 package/feeds/luci/luci-app-passwall2
+
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
