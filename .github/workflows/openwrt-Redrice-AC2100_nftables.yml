@@ -12,8 +12,8 @@ name: Redrice-AC2100-23.05_nftables
 
 on:
  repository_dispatch:
- schedule:
-    - cron: 0 21 * * *
+# schedule:
+#    - cron: 0 21 * * *
  workflow_dispatch:
     inputs:
       ssh:
