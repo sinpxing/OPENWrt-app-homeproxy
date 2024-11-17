@@ -12,8 +12,8 @@ name: openwrt-x86-main_nftables
 
 on:
  repository_dispatch:
- schedule:
-    - cron: 0 21 * * *
+# schedule:
+#    - cron: 0 21 * * *
  workflow_dispatch:
     inputs:
       ssh:
