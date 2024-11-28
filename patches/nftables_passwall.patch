@@ -119,5 +119,5 @@ index 7543450761..b9b967940c 100644
 -	default n
 +	default y
  
- config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
- 	bool "Include V2ray-Plugin (Shadowsocks Plugin)"
+ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geoview
+ 	bool "Include V2ray_Geoview"
