@@ -1,0 +1,38 @@
+From d206898cfaf78aafc9904056f88c2b84e0a2ca9f Mon Sep 17 00:00:00 2001
+From: sdhz151 <yanghui140@gmail.com>
+Date: Sat, 30 Nov 2024 13:05:42 +0800
+Subject: [PATCH] Update Makefile
+
+---
+ luci-app-passwall2/Makefile | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/package/passwall2/luci-app-passwall2/Makefile b/package/passwall2/luci-app-passwall2/Makefile
+index 6511ef23..929d5a40 100644
+--- a/package/passwall2/luci-app-passwall2/Makefile
++++ b/package/passwall2/luci-app-passwall2/Makefile
+@@ -10,7 +10,6 @@ PKG_RELEASE:=2
+ 
+ PKG_CONFIG_DEPENDS:= \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_Iptables_Transparent_Proxy \
+-	CONFIG_PACKAGE_$(PKG_NAME)_Nftables_Transparent_Proxy \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria \
+ 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat \
+@@ -59,16 +58,6 @@ config PACKAGE_$(PKG_NAME)_Iptables_Transparent_Proxy
+ 	select PACKAGE_kmod-ipt-nat
+ 	default y if ! PACKAGE_firewall4
+ 
+-config PACKAGE_$(PKG_NAME)_Nftables_Transparent_Proxy
+-	bool "Nftables Transparent Proxy"
+-	select PACKAGE_dnsmasq-full
+-	select PACKAGE_dnsmasq_full_nftset
+-	select PACKAGE_nftables
+-	select PACKAGE_kmod-nft-socket
+-	select PACKAGE_kmod-nft-tproxy
+-	select PACKAGE_kmod-nft-nat
+-	default y if PACKAGE_firewall4
+-
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
+ 	bool "Include Haproxy"
+ 	select PACKAGE_haproxy
