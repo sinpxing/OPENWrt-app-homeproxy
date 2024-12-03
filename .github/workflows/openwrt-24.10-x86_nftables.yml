@@ -112,9 +112,9 @@ jobs:
        echo "net/vlmcsd" >> .git/info/sparse-checkout
        git pull --depth 1 origin openwrt-23.05
 
-       - name: Add homeproxy
-       id: homeproxy
-       run: |
+    - name: Add homeproxy
+      id: homeproxy
+      run: |
        cd openwrt
        mkdir -p feeds/luci/applications/homeproxy
        cd feeds/luci/applications/homeproxy
